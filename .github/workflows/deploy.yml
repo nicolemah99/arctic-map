@@ -15,4 +15,4 @@ jobs:
 
       - name: Inject Mapbox Token
         run: |
-          sed -i 's/<MAPBOX_ACCESS_TOKEN>/${{ secrets.MAPBOX_ACCESS_TOKEN }}/' index.html
+          sed -i 's/<MAPBOX_ACCESS_TOKEN>/${{ secrets.MAPBOX_ACCESS_TOKEN_DEV }}/' index.html
