@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mapbox Styles API</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      mapboxgl.accessToken =
+        '';
+
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-149.900284, 61.218056], // Anchorage
+            },
+            properties: {
+              title: 'Anchorage Museum',
+              description:
+                'The largest museum in Alaska located in downtown Anchorage.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-157.858333, 61.581389], // Bethel
+            },
+            properties: {
+              title: 'Bethel',
+              description:
+                'A hub city for many of the surrounding villages in Western Alaska.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-150.019444, 64.837778], // Denali National Park
+            },
+            properties: {
+              title: 'Denali National Park',
+              description: 'Home to North America’s highest peak, Denali.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-135.327778, 57.053056], // Sitka
+            },
+            properties: {
+              title: 'Sitka National Historical Park',
+              description:
+                'Preserves the site of a battle between invading Russian traders and the indigenous Tlingit people.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [ -149.4410835, 60.105335], // Seward
+            },
+            properties: {
+              title: 'Seward',
+              description:
+                'A coastal town famous for its marine wildlife and glaciers.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-148.68731, 60.77567], // Whittier
+            },
+            properties: {
+              title: 'Whittier',
+              description:
+                'A small town that’s the gateway to Prince William Sound.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-141.339722, 64.8375], // Eagle
+            },
+            properties: {
+              title: 'Eagle',
+              description:
+                'A small community near the Yukon River with rich history from the Klondike Gold Rush.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-135.335, 58.301944], // Juneau
+            },
+            properties: {
+              title: 'Mendenhall Glacier',
+              description:
+                'A glacier about 12 miles from downtown Juneau, accessible via a short drive.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [-147.716389, 64.837222], // Fairbanks
+            },
+            properties: {
+              title: 'University of Alaska Fairbanks',
+              description:
+                'The flagship campus of the University of Alaska system, known for its Arctic research.',
+            },
+          },
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [ -150.055337, 61.15367],
+            },
+            properties: {
+              title: 'Kincaid Park',
+              description:
+                'A large coastal park in Anchorage offering trails, wildlife, and scenic views.',
+            },
+          },
+        ],
+      };
+
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-streets-v12',
+        center: [-147, 62],
+        zoom: 4,
+      });
+
+      // add markers to map
+      for (const feature of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker()
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map);
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map);
+
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+              .setHTML(
+                `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+              )
+          )
+          .addTo(map);
+      }
+    </script>
+  </body>
+</html>
