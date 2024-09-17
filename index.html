@@ -11,12 +11,15 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
     />
-    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link
-      href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <link
+      rel="stylesheet"
+      href="styles.css"
+    />
   </head>
   <body>
     <div id="map"></div>
@@ -79,7 +82,7 @@
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates: [ -149.4410835, 60.105335], // Seward
+              coordinates: [-149.4410835, 60.105335], // Seward
             },
             properties: {
               title: 'Seward',
@@ -139,7 +142,7 @@
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates: [ -150.055337, 61.15367],
+              coordinates: [-150.055337, 61.15367],
             },
             properties: {
               title: 'Kincaid Park',
